@@ -8,6 +8,7 @@ import com.itheima.entity.Result;
 import com.itheima.pojo.CheckGroup;
 import com.itheima.pojo.CheckItem;
 import com.itheima.service.CheckGroupService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -68,5 +69,16 @@ public class CheckGroupController {
             return new Result(false,MessageConstant.EDIT_CHECKGROUP_FAIL);
         }
         return new Result(true,MessageConstant.EDIT_CHECKGROUP_SUCCESS);
+    }
+    @GetMapping("/findAll")
+    public Result findAll(){
+        //为啥检查组这里不用try{}写法
+           List<CheckGroup> checkGroups =checkGroupService.findAll();
+           if (checkGroups!=null&&checkGroups.size()>0) {
+               return new Result(true, MessageConstant.QUERY_CHECKGROUP_SUCCESS, checkGroups);
+           }
+           return new Result(false,MessageConstant.QUERY_CHECKGROUP_FAIL);
+
+
     }
 }

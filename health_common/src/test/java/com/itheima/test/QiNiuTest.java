@@ -17,16 +17,16 @@ public class QiNiuTest {
     @Test
     public void test(){
         //构造一个带指定 Region 对象的配置类
-        Configuration cfg = new Configuration(Region.region2());
+        Configuration cfg = new Configuration(Region.region0());
 //...其他参数参考类注释
 
         UploadManager uploadManager = new UploadManager(cfg);
 //...生成上传凭证，然后准备上传
         String accessKey = "4KgBlMIttq3M_Epk_3sCttvvJT3VpfKR0DR7TBpQ";
         String secretKey = "8VyKpCj9hPvetgYV_wJDPwweHwGXY8ZOnreRxDQp";
-        String bucket = "health-lairujian";
+        String bucket = "health-liujian";
 //如果是Windows情况下，格式是 D:\\qiniu\\test.png
-        String localFilePath = "F:\\java学习\\就业班2.1笔记源码-压缩版\\阶段4：会员版(2.1)-医疗实战-传智健康\\day04-第4章：预约管理-套餐管理\\素材\\图片资源\\3bd90d2c-4e82-42a1-a401-882c88b06a1a2.jpg";
+        String localFilePath = "G:\\healthTp\\03a36073-a140-4942-9b9b-712cecb144901.jpg";
 //默认不指定key的情况下，以文件内容的hash值作为文件名
         String key = "abc.jsp";
 
@@ -61,7 +61,7 @@ public class QiNiuTest {
         String accessKey = "4KgBlMIttq3M_Epk_3sCttvvJT3VpfKR0DR7TBpQ";
         String secretKey = "8VyKpCj9hPvetgYV_wJDPwweHwGXY8ZOnreRxDQp";
 
-        String bucket = "health-lairujian";
+        String bucket = "health-liujian";
         String key = "FuM1Sa5TtL_ekLsdkYWcf5pyjKGu";
 
         Auth auth = Auth.create(accessKey, secretKey);

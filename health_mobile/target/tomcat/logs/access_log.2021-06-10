@@ -1,0 +1,17 @@
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:27:44 +0800] "GET /pages/m_setmeal.html HTTP/1.1" 200 5091 http-bio-80-exec-2 28
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:27:44 +0800] "GET /css/page-health-order.css HTTP/1.1" 200 11454 http-bio-80-exec-4 1
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:27:44 +0800] "GET /plugins/vue/axios-0.18.0.js HTTP/1.1" 200 12948 http-bio-80-exec-5 0
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:27:44 +0800] "GET /plugins/vue/vue.js HTTP/1.1" 200 300248 http-bio-80-exec-3 1
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:27:44 +0800] "GET /fonts/health-icon.ttf?l7yt0w HTTP/1.1" 200 14764 http-bio-80-exec-8 0
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:27:44 +0800] "GET /img/asset-favico.ico HTTP/1.1" 200 4286 http-bio-80-exec-9 1
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:27:47 +0800] "GET /pages/setmeal_detail_7.html HTTP/1.1" 200 10965 http-bio-80-exec-10 10
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:27:47 +0800] "GET /css/page-health-orderDetail.css HTTP/1.1" 200 9879 http-bio-80-exec-10 1
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:27:47 +0800] "GET /plugins/healthmobile.js HTTP/1.1" 200 2436 http-bio-80-exec-7 1
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:27:52 +0800] "GET /pages/setmeal_detail_5.html HTTP/1.1" 200 3579 http-bio-80-exec-10 10
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:27:55 +0800] "GET /pages/setmeal_detail_6.html HTTP/1.1" 200 3582 http-bio-80-exec-10 9
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:27:58 +0800] "GET /pages/setmeal_detail_7.html HTTP/1.1" 304 - http-bio-80-exec-10 1
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:28:03 +0800] "GET /pages/setmeal_detail_10.html HTTP/1.1" 200 2917 http-bio-80-exec-10 9
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:33:26 +0800] "GET /pages/setmeal_detail_5.html HTTP/1.1" 304 - http-bio-80-exec-1 1
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:33:32 +0800] "GET /pages/setmeal_detail_7.html HTTP/1.1" 304 - http-bio-80-exec-1 1
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:34:43 +0800] "GET /pages/setmeal_detail_10.html HTTP/1.1" 304 - http-bio-80-exec-3 1
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:18:34:57 +0800] "GET /pages/setmeal_detail_7.html HTTP/1.1" 304 - http-bio-80-exec-3 1

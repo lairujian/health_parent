@@ -235,12 +235,12 @@
                 imageUrl:null,//模型数据，用于上传图片完成后图片预览
                 activeName:'first',//添加/编辑窗口Tab标签名称
                 pagination: {//分页相关属性
-                    currentPage: 1,
-                    pageSize:10,
-                    total:100,
-                    queryString:null,
+                    currentPage: 1, //当前页码
+                    pageSize:10,//每页显示的记录数
+                    total:100, //总记录数
+                    queryString:null,// 查询条件
                 },
-                dataList: [],//列表数据
+                dataList: [],//分页列表数据
                 formData: {},//表单数据
                 tableData:[],//添加表单窗口中检查组列表数据
                 checkgroupIds:[],//添加表单窗口中检查组复选框对应id
@@ -252,6 +252,16 @@
             methods: {
                 //文件上传成功后的钩子，response为服务端返回的值，file为当前上传的文件封装成的js对象
                 handleAvatarSuccess(response, file) {
+                    //后端返回图片的名称，手动添加保存的网址http://qsdccw5tn.hn-bkt.clouddn.com/，
+                    this.imageUrl="http://qu4e446e6.hd-bkt.clouddn.com/"+response.data;
+                    //提示信息
+                    this.$message({
+                        message:response.message,
+                        type:response.flag ? 'success':'error'
+                    });
+
+                    //设置模型数据（图片名称），后续提交ajax请求时会提交到后台最终保存数据库
+                    this.formData.img= response.data;
                 },
                 //上传图片之前执行
                 beforeAvatarUpload(file) {
@@ -267,9 +277,35 @@
                 },
                 //添加
                 handleAdd () {
+                    //将检查组信息和套餐信息提交
+                    axios.post("/setmeal/add.do?checkgroupIds="+this.checkgroupIds,this.formData).then((res)=>{
+                        if (res.data.flag){
+                            this.dialogFormVisible=false;
+                            this.$message({
+                                message: res.data.message,
+                                type: 'success'
+                            });
+                        }else {
+                            this.$message.error(res.data.message);
+                        }
+                    }).finally(()=>{
+                        this.findPage();
+                    });
                 },
                 //分页查询
                 findPage() {
+                    //分页参数
+                    var param={
+                        currentPage: this.pagination.currentPage,
+                        pageSize: this.pagination.pageSize,
+                        queryString: this.pagination.queryString
+                    };
+                    //请求后台
+                    axios.post("/setmeal/findPage.do",param).then((res)=>{
+                        //拿到数据后为模型赋值，
+                        this.dataList=res.data.rows;
+                        this.pagination.total=res.data.total;
+                    });
                 },
                 // 重置表单
                 resetForm() {
@@ -288,11 +324,20 @@
                     this.resetForm();
                     this.dialogFormVisible=true;
                     //查询所有的检查组
-                    axios.get().then();
+                    axios.get("/checkgroup/findAll.do").then((res)=>{
+                        if (res.data.flag){
+                            this.tableData=res.data.data;
+                        }else {
+                            this.$message.error(res.date.message);
+                        }
+                    });
 
                 },
                 //切换页码
                 handleCurrentChange(currentPage) {
+                    //将切换的页码赋值后调用分页方法
+                    this.pagination.currentPage=currentPage;
+                    this.findPage();
                 }
             }
         })

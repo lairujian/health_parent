@@ -22,4 +22,13 @@
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
     <!--发布服务-->
     <dubbo:annotation package="com.itheima.service"/>
+
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer" id="freeMarkerConfigurer">
+        <!--指定模板所在目录-->
+        <property name="templateLoaderPath" value="/WEB-INF/ftl/"/>
+        <!--指定字符集-->
+        <property name="defaultEncoding" value="UTF-8"/>
+     </bean>
+    <context:property-placeholder location="classpath:freemarker.properties"/>
+
 </beans>

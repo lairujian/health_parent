@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.dao.SetmealDao">
+    <!--实体类与表里的映射关系-->
+    <resultMap id="baseResultMap" type="com.itheima.pojo.Setmeal">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="helpCode" property="helpCode"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="price" property="price"/>
+        <result column="remark" property="remark"/>
+        <result column="attention" property="attention"/>
+        <result column="img" property="img"/>
+    </resultMap>
+    <!--继承上面的映射关系，进行关联查询-->
+    <resultMap id="findByIdResultMap" type="com.itheima.pojo.Setmeal" extends="baseResultMap">
+            <!--多对多映射,将结果集的id再做参数查询检查组的信息-->
+        <collection property="checkGroups"
+                    ofType="com.itheima.pojo.CheckGroup"
+                    column="id"
+                    select="com.itheima.dao.CheckGroupDao.findCheckGroupDaoById"
+        ></collection>
+    </resultMap>
+
+
+    <!--新增-->
+    <insert id="add" parameterType="com.itheima.pojo.Setmeal">
+        /*返回自增*/
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            select last_insert_id()
+        </selectKey>
+        insert into t_setmeal(name,code,helpCode,sex,age,price,remark,attention,img)
+            values (#{name},#{code},#{helpCode},#{sex},#{age},#{price},#{remark},#{attention},#{img})
+    </insert>
+    <!--绑定多对多关系-->
+    <insert id="setSetmealAndCheckGroup" parameterType="hashmap">
+        insert t_setmeal_checkgroup(setmeal_id , checkgroup_id  )
+            values (#{setmeal_id},#{checkgroup_id})
+    </insert>
+    <!--分页查询-->
+    <select id="selectByCondition" parameterType="string" resultType="com.itheima.pojo.Setmeal">
+        select * from t_setmeal
+        <if test="value!=null and value.length>0">
+            where code=#{value} or name=#{value } or helpCode=#{value }
+        </if>
+    </select>
+
+    <!--查询所有套餐-->
+    <select id="findAll" resultType="com.itheima.pojo.Setmeal">
+        select * from t_setmeal
+    </select>
+
+    <!--根据套餐Id查询套餐的详情（套餐基本信息，套餐对应的检查组信息，检查组对应的检查项信息）-->
+    <select id="findById" parameterType="int" resultMap="findByIdResultMap">
+        select * from t_setmeal where id=#{id}
+    </select>
+</mapper>

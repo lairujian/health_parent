@@ -75,4 +75,11 @@ public class CheckGroupServiceImpl implements CheckGroupService{
         setCheckGroupAndCheckItem(checkGroup.getId(),checkitemIds);
 
     }
+
+    @Override
+    public List<CheckGroup> findAll() {
+        //查询检查组
+
+        return  checkGroupDao.findAll();
+    }
 }
